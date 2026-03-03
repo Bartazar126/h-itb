@@ -1,27 +1,29 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import ConditionalFooter from "@/components/ConditionalFooter";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sans = Space_Grotesk({
+  variable: "--font-space",
   subsets: ["latin"],
   display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
   preload: true,
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const mono = Space_Mono({
+  variable: "--font-space-mono",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "700"],
   preload: false,
 });
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0A0A0A",
+  themeColor: "#0C0C0C",
   colorScheme: "light",
 };
 
@@ -32,11 +34,8 @@ export const metadata: Metadata = {
     template: "%s – H-ITB",
   },
   description:
-    "Daruk, csörlők, targoncák és teljes szakszolgálat 1990 óta. GUTMAN Official Distributor – Magyarország, Románia, Szlovákia, Szerbia, Horvátország.",
-  keywords: [
-    "emelőgép", "daru", "híddaru", "csörlő", "targonca", "futómacska",
-    "emeléstechnika", "anyagmozgatás", "GUTMAN", "szakszolgálat", "ETAR",
-  ],
+    "Daruk, csörlők, targoncák és teljes szakszolgálat 1990 óta. GUTMAN Official Distributor.",
+  keywords: ["emelőgép", "daru", "csörlő", "targonca", "emeléstechnika", "GUTMAN"],
   authors: [{ name: "H-ITB Kft.", url: "https://h-itb.hu" }],
   robots: { index: true, follow: true },
   openGraph: {
@@ -45,20 +44,6 @@ export const metadata: Metadata = {
     url: "https://h-itb.hu",
     siteName: "H-ITB Kft.",
     title: "H-ITB Kft. – Emeléstechnika",
-    description:
-      "Daruk, csörlők, targoncák és teljes szakszolgálat 1990 óta. GUTMAN Official Distributor.",
-    images: [
-      {
-        url: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1200&q=80",
-        width: 1200,
-        height: 630,
-        alt: "H-ITB Kft. – Ipari emelőgépek",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "H-ITB Kft. – Emeléstechnika",
     description: "Daruk, csörlők, targoncák 1990 óta. GUTMAN Official Distributor.",
   },
 };
@@ -66,7 +51,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="hu">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${sans.variable} ${mono.variable} antialiased`}>
         <Nav />
         <main>{children}</main>
         <ConditionalFooter />

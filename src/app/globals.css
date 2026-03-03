@@ -1,19 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink:         #0C0C0C;
+  --color-ink:         #0F0F0E;
   --color-ink-mid:     #525252;
-  --color-ink-light:   #A09D96;
-  --color-paper:       #F8F7F3;
-  --color-paper-warm:  #F0EDE7;
-  --color-border:      #E5E1D8;
-  --color-navy:        #1A3968;
-  --color-navy-dark:   #0F2347;
-  --color-accent:      #E8560C;
-  --color-accent-h:    #D04C0A;
+  --color-ink-light:   #9A9A9A;
+  --color-paper:       #FAFAF7;
+  --color-paper-warm:  #F3F0E8;
+  --color-border:      #E4E1D6;
+  --color-accent:      #F2C200;
+  --color-accent-h:    #DEAD00;
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-space);
+  --font-mono: var(--font-space-mono);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -23,17 +21,15 @@ html {
   text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: auto;
 }
-
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
 
 body {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  background: var(--color-paper);
-  color: var(--color-ink);
+  font-family: var(--font-space, system-ui, sans-serif);
+  background: var(--color-ink);
+  color: var(--color-paper);
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -45,12 +41,11 @@ a, button, [role="button"] {
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: #2a2a28; border-radius: 2px; }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* ── Marquee ── */
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -61,46 +56,22 @@ a, button, [role="button"] {
   animation: marquee 35s linear infinite;
 }
 .animate-marquee:hover { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .animate-marquee { animation: none; } }
 
-@media (prefers-reduced-motion: reduce) {
-  .animate-marquee { animation: none; }
-}
-
-/* ── Fade in ── */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .fade-in   { animation: fadeIn 0.5s ease both; }
-  .fade-in-1 { animation: fadeIn 0.5s 0.08s ease both; }
-  .fade-in-2 { animation: fadeIn 0.5s 0.18s ease both; }
-  .fade-in-3 { animation: fadeIn 0.5s 0.30s ease both; }
-}
-
-/* ── AI cursor blink ── */
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
-}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 .cursor-blink { animation: blink 1s step-end infinite; }
 @media (prefers-reduced-motion: reduce) { .cursor-blink { animation: none; } }
 
-@keyframes typing {
-  from { width: 0; }
-  to   { width: 100%; }
-}
+@keyframes typing { from { width: 0; } to { width: 100%; } }
 
-/* ── Category row hover accent ── */
-.cat-row { position: relative; }
-.cat-row::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.2s ease;
-  background: var(--row-accent, var(--color-accent));
+/* Fade-in for hero */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-.cat-row:hover::before { transform: scaleY(1); }
+@media (prefers-reduced-motion: no-preference) {
+  .fade-up   { animation: fadeUp 0.6s ease both; }
+  .fade-up-1 { animation: fadeUp 0.6s 0.1s  ease both; }
+  .fade-up-2 { animation: fadeUp 0.6s 0.22s ease both; }
+  .fade-up-3 { animation: fadeUp 0.6s 0.36s ease both; }
+}
