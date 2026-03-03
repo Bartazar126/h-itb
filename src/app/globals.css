@@ -1,26 +1,106 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --color-ink:         #0A0A0A;
+  --color-ink-mid:     #404040;
+  --color-ink-light:   #9CA3AF;
+  --color-paper:       #FFFFFF;
+  --color-paper-warm:  #F7F6F3;
+  --color-border:      #E8E5DF;
+  --color-navy:        #1B3A6B;
+  --color-navy-dark:   #0F2347;
+  --color-accent:      #F97316;
+  --color-accent-h:    #EA6C0A;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  /* Prevent iOS auto font-size inflation */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Only use smooth scroll if user hasn't requested reduced motion */
+  scroll-behavior: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  background: #FFFFFF;
+  color: #0A0A0A;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Improve tap responsiveness – removes 300ms delay on mobile */
+a, button, [role="button"] {
+  touch-action: manipulation;
+}
+
+/* Minimum touch target size hint (visual aid only; actual size set via padding) */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 2px; }
+
+/* No-scrollbar utility */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Marquee ── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+.animate-marquee:hover { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee { animation: none; }
+}
+
+/* ── Fade in – only when motion is OK ── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in   { animation: fadeIn 0.5s ease both; }
+  .fade-in-1 { animation: fadeIn 0.5s 0.08s ease both; }
+  .fade-in-2 { animation: fadeIn 0.5s 0.18s ease both; }
+  .fade-in-3 { animation: fadeIn 0.5s 0.30s ease both; }
+}
+
+/* ── Cursor blink for AI ── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.cursor-blink { animation: blink 1s step-end infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-blink { animation: none; }
+}
+
+/* ── AI typing ── */
+@keyframes typing {
+  from { width: 0; }
+  to   { width: 100%; }
 }
