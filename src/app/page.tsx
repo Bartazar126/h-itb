@@ -319,13 +319,13 @@ export default function HomePage() {
                 és az érvényes <strong className="text-ink">MSZ EN szabványok</strong> szerint javasoljuk a megfelelő termékcsaládot.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Link href="/ai"
+                <Link href="/megoldas"
                   className="inline-flex items-center gap-2 bg-ink hover:bg-ink-mid text-paper font-semibold px-5 py-3 rounded text-[13px] transition-colors">
-                  Megoldást keresek →
+                  Termékválasztó →
                 </Link>
-                <Link href="/termekek"
+                <Link href="/ai"
                   className="inline-flex items-center gap-2 border border-border hover:border-ink text-ink-mid hover:text-ink font-semibold px-5 py-3 rounded text-[13px] transition-all">
-                  Katalógus
+                  AI Tanácsadó
                 </Link>
               </div>
             </div>

@@ -6,7 +6,8 @@ import { useState } from "react";
 
 const links = [
   { href: "/termekek",  label: "Termékek" },
-  { href: "/ai",        label: "Tanácsadó" },
+  { href: "/megoldas",  label: "Termékválasztó" },
+  { href: "/ai",        label: "AI Tanácsadó" },
   { href: "/kapcsolat", label: "Kapcsolat" },
 ];
 
