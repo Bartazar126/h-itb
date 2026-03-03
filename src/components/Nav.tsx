@@ -44,14 +44,20 @@ export default function Nav() {
         <nav className="hidden md:flex items-center gap-0">
           {links.map(l => {
             const active = l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
+            const isSelector = l.href === "/megoldas";
             return (
               <Link key={l.href} href={l.href}
-                className={`relative px-4 py-[18px] text-[13px] font-medium transition-colors ${
-                  active ? "text-ink" : "text-ink-light hover:text-ink"
+                className={`relative px-4 py-[18px] text-[13px] font-medium transition-colors flex items-center gap-1.5 ${
+                  isSelector
+                    ? active ? "text-accent" : "text-accent/70 hover:text-accent"
+                    : active ? "text-ink" : "text-ink-light hover:text-ink"
                 }`}>
+                {isSelector && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                )}
                 {l.label}
                 {active && (
-                  <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-ink rounded-full" />
+                  <span className={`absolute bottom-0 left-4 right-4 h-[2px] rounded-full ${isSelector ? "bg-accent" : "bg-ink"}`} />
                 )}
               </Link>
             );
@@ -90,11 +96,15 @@ export default function Nav() {
           <nav className="px-4 py-3 space-y-0.5">
             {links.map(l => {
               const active = l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
+              const isSelector = l.href === "/megoldas";
               return (
                 <Link key={l.href} href={l.href} onClick={() => setOpen(false)}
-                  className={`flex items-center px-3 py-3.5 min-h-[44px] rounded-md text-[14px] font-medium transition-colors ${
-                    active ? "bg-paper-warm text-ink" : "text-ink-light hover:text-ink hover:bg-paper-warm/50"
+                  className={`flex items-center gap-2 px-3 py-3.5 min-h-[44px] rounded-md text-[14px] font-medium transition-colors ${
+                    isSelector
+                      ? active ? "bg-accent/10 text-accent font-semibold" : "text-accent hover:bg-accent/8"
+                      : active ? "bg-paper-warm text-ink" : "text-ink-light hover:text-ink hover:bg-paper-warm/50"
                   }`}>
+                  {isSelector && <span className="w-2 h-2 rounded-full bg-accent shrink-0" />}
                   {l.label}
                 </Link>
               );

@@ -240,6 +240,64 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════
+          PRODUCT SELECTOR BANNER
+      ══════════════════════════════════════════ */}
+      <section className="border-t border-border bg-ink py-14 sm:py-16 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-5 sm:px-10">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+
+            {/* Left – text */}
+            <div>
+              <div className="inline-flex items-center gap-2 bg-accent/15 text-accent text-[11px] font-bold uppercase tracking-[2px] px-3 py-1.5 rounded-full mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                Termékválasztó
+              </div>
+              <h2 className="font-black text-paper tracking-tight leading-tight mb-5"
+                style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}>
+                Nem tudja melyik<br />
+                <span className="text-accent">termék kell?</span>
+              </h2>
+              <p className="text-paper/50 text-[15px] leading-relaxed mb-8 max-w-md">
+                Válassza ki a feladat típusát, a teherbírást és a környezeti feltételeket –
+                3 lépésben megmutatjuk a megfelelő terméket.
+              </p>
+              <Link href="/megoldas"
+                className="inline-flex items-center gap-3 bg-accent hover:bg-accent-h text-paper font-bold px-7 py-4 rounded-xl text-[15px] transition-colors">
+                Indítom a választót →
+              </Link>
+            </div>
+
+            {/* Right – visual steps preview */}
+            <div className="flex flex-col gap-3">
+              {[
+                { n: "01", label: "Mi a feladat?",         opts: ["Emelés", "Anyagmozgatás", "Rögzítés"],        color: "#F97316" },
+                { n: "02", label: "Teherbírás & meghajtás", opts: ["< 0,5 t",  "0,5–5 t",  "5–20 t",  "20 t+"], color: "#3B82F6" },
+                { n: "03", label: "Munkakörnyezet",         opts: ["Beltér", "Kültér", "ATEX"],                   color: "#10B981" },
+              ].map(step => (
+                <div key={step.n} className="flex items-center gap-4 bg-paper/5 border border-paper/10 rounded-xl px-5 py-4">
+                  <span className="font-black font-mono text-[13px] shrink-0 opacity-40 text-paper">{step.n}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-paper/60 text-[11px] font-medium mb-2">{step.label}</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {step.opts.map(o => (
+                        <span key={o} className="text-[11px] font-medium text-paper/50 border border-paper/15 px-2 py-0.5 rounded-md">{o}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <span className="text-paper/20 text-lg shrink-0">→</span>
+                </div>
+              ))}
+              <div className="flex items-center gap-4 bg-accent/15 border border-accent/30 rounded-xl px-5 py-4">
+                <span className="font-black font-mono text-[13px] shrink-0 text-accent">✓</span>
+                <p className="text-paper/70 text-[13px] font-medium">Ajánlott termékek listája</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
           FEATURE SPLIT – large image + text
       ══════════════════════════════════════════ */}
       <section className="border-t border-border">
